@@ -1,0 +1,108 @@
+---
+import styles from '../styles/nav.sass'
+---
+
+<nav id="navbar" class="sticky z-20" data-show="false">
+    <div class="relative flex justify-between flex-col lg:flex-row">
+        <div id="navbar-header" class="px-6 pt-6 flex items-center basis-full justify-between lg:flex-initial lg:justify-start">
+            <h1 id="navbar-brand" class="font-bold text-4xl font-nav pr-4 w-min dark:text-white">BaBaSaMa</h1>
+
+            <div id="toggle-switch" class="relative inline-block">
+                <input type="checkbox" id="toggle-button" class="opacity-0">
+                <span id="toggle-slider" class="absolute cursor-pointer top-0 left-0 right-0 bottom-0">
+                    <i class="fa-duotone fa-sun-bright"></i>
+                </span>
+            </div>
+        </div>
+
+        <button id="navbar-button" class="absolute w-min right-5 text-lg md:hidden">
+            <i class="fa-duotone fa-bars"></i>
+        </button>
+
+        <ul id="navbar-list" class="absolute grid grid-cols-2 grid-rows-2 justify-evenly md:relative md:flex md:flex-row md:items-center md:pt-4">
+            <!-- <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
+                <i class="fa-light fa-file-lines"></i>
+                <a id="blog" href="/blog" class="">Blog</a>
+            </li> -->
+            <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
+                <i class="fa-light fa-folders"></i>
+                <a id="projects" href="/project" class="">Projects</a>
+            </li>
+            <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
+                <i class="fa-light fa-address-card"></i>
+                <a id="about-me" href="/about_me" class="">About Me</a>
+            </li>
+            <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
+                <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/Ju-Long" target="_blank" class="">Github</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    function convertRemToPixels(rem: number) {
+        return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    }
+
+    const loadHeight = () => {
+        console.log('load height called')
+        const navbar_header = document.getElementById('navbar-header')
+        const navbar_button = document.getElementById('navbar-button')
+        const navbar_list = document.getElementById('navbar-list')
+        let button_top = navbar_header.scrollHeight
+        navbar_button.style.top = `${button_top}px`
+        document.getElementById('navbar-list').style.top = 'auto'
+        document.getElementById('navbar').style.height = 'auto'
+        if (window.innerWidth < 649) {
+            document.getElementById('navbar-list').style.top = `${button_top}px`
+        }
+        navbar_button.addEventListener('click', () => {
+            if (document.getElementById('navbar').dataset.show === "true"){
+                document.getElementById('navbar').dataset.show = "false" 
+                document.getElementById('navbar').style.height = `${navbar_header.scrollHeight}px`
+            } else {
+                document.getElementById('navbar').dataset.show = "true"
+                document.getElementById('navbar').style.height = `${button_top + navbar_list.clientHeight}px`
+            }
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', loadHeight)
+    window.addEventListener('resize', loadHeight)
+
+    const toggle_switch = document.getElementById('toggle-switch')
+    toggle_switch.addEventListener('click', (e) => {
+        let toggle_button = document.getElementById('toggle-button')
+        toggle_button.toggleAttribute('checked')
+
+        if (toggle_button.getAttribute('checked') != null) {
+            document.getElementById('toggle-slider').innerHTML = '<i class="fa-light fa-moon-stars"></i>'
+            localStorage.theme = 'dark'
+        } else {
+            document.getElementById('toggle-slider').innerHTML = '<i class="fa-duotone fa-sun-bright"></i>'
+            localStorage.theme = 'light'
+        }
+        window.dispatchEvent(new Event('storage'))
+    })
+
+    if (localStorage.theme === 'dark') {
+        toggle_switch.click()
+    }
+
+    switch (window.location.pathname) {
+        case '/projects':
+            document.getElementById('navbar-brand').innerHTML += "'s Projects"
+            document.getElementById('projects').classList.add('font-semibold')
+            break
+
+        case '/about_me':
+            document.getElementById('navbar-brand').innerHTML += "'s Profile"
+            document.getElementById('about-me').classList.add('font-semibold')
+            break
+    }
+
+    document.getElementById('navbar-brand').addEventListener('click', () => {
+        window.location.href = '/'
+    })
+</script>

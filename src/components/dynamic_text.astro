@@ -1,0 +1,69 @@
+---
+
+---
+
+<div>
+    <span id="static-text" class="dark:text-white">I am</span> 
+    <span id="dynamic-text" class="dark:text-white"></span>
+</div>
+
+<script>
+    const intro_text = [
+        "a Developer, I Make Apps and Website that suits your needs.", 
+        "an UI/UX Designer, I Create Designs that Guarantees Customer Satisfaction.", 
+        "a Solo Freelancer, I Can Manage Multiple Task and Hit Target on Demand."
+    ];
+
+    var intro_text_count = 0
+    var word_index_count = 0
+    var typing;
+
+    const startTyping = () => {
+        try {
+            console.log("start typing")
+
+            typing = setInterval(() => {
+                console.log("typing interval")
+                if (intro_text_count === intro_text.length) { 
+                    intro_text_count = 0 
+                    document.getElementById('dynamic-text').innerHTML = "";
+                }
+            
+                if (intro_text[intro_text_count][word_index_count] === undefined) throw Error()
+
+                document.getElementById('dynamic-text').innerHTML += intro_text[intro_text_count][word_index_count]
+                word_index_count++
+            
+                if (word_index_count >= intro_text[intro_text_count].length) { 
+                    endTyping()
+                    setTimeout(() => {
+                        word_index_count = 0 
+                        document.getElementById('dynamic-text').innerHTML = "";
+                        intro_text_count++
+                        startTyping()
+                    }, 1500);
+                }
+            }, 350);
+        } catch {
+            endTyping()
+            intro_text_count = 0
+            word_index_count = 0
+            startTyping()
+        }
+    }
+
+    const endTyping = () => {
+        clearInterval(typing)
+        console.log("end typing")
+    }
+
+    document.addEventListener('visibilitychange', (e) => {
+        if (document.hidden) {
+            endTyping()
+        } else {
+            startTyping()
+        }
+    })
+
+    startTyping()
+</script>

@@ -1,0 +1,25 @@
+---
+import ProjectSection from "../components/project_section.astro";
+import Main from "../layouts/main.astro";
+import { Project, YearlyProject } from "../classes/project";
+import styles from '../styles/project.sass'
+
+const yearly_projects: [YearlyProject] = [
+    new YearlyProject(
+        2022, 
+        [
+            new Project('Redo Portfolio', 'Decided there my old portfolio was outdated, so i upgraded it to astro framework with some extensions to improve UX', '/images/babasama.com.png', '#', true),
+        ]
+    )
+]
+---
+
+<Main title="Projects ~ BaBaSaMa">
+	<div id="container" class="relative container mt-5 mx-auto z-10">
+        <main class="flex flex-col">
+            { yearly_projects.map((yearly_project) => (
+                <ProjectSection yearly_project={yearly_project} client:load/>
+            )) }
+        </main>
+	</div>
+</Main>

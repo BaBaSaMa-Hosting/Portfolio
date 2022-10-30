@@ -1,0 +1,78 @@
+---
+import Main from "../layouts/main.astro";
+import styles from '../styles/about_me.sass'
+---
+
+<Main title="About Me ~ BaBaSaMa"> 
+	<div id="container" class="relative container mt-8 mx-auto z-10 grid">
+        <div class="flex flex-col lg:flex-row self-center">
+            <div class="flex-1 flex flex-col mx-3">
+                <div id="skillsets-container" class="about-me-containers flex flex-row py-2 my-2"> 
+                    <img src="/images/macbook_website_view.png" alt="" class="object-contain w-1/2"/>
+                    <div class="text-sm dark:text-white">
+                        <strong>Skill Sets</strong>
+                        <ul>
+                            <li>Backend Programming - PHP, NodeJS, Python</li>
+                            <li>Frontend Programming - HTML, Css, Js, react, vue, svelte</li>
+                            <li>Mobile Programming - Swift UI / UI Kit, Android MDC / Jetpack Compose</li>
+                            <li>Mobile Framework Programming - React Native</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="design-container" class="about-me-containers flex flex-row py-2 my-2"> 
+                    <img src="/images/design_apps_icons.png" alt="" class="object-contain w-1/2"/>
+                    <div class="dark:text-white">
+                        <strong>Designing</strong>
+                        <ul>
+                            <li>UI Designing Software - Figma, Adobe XD</li>
+                            <li>Icon Designing Software - Adobe Illustrator, Adobe Photoshop, Figma</li>
+                            <li>Drawing Software - Procreate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="media-container" class="about-me-containers flex flex-row py-2 my-2"> 
+                    <div class="dark:text-white px-2">
+                        <strong>Social Media</strong>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <form id="contact-me-container" class="basis-1/2 flex flex-col mx-3 pb-48 md:pb-0" action="#" method="get">
+                <fieldset>
+                    <legend class="text-xl font-bold dark:text-white">Contact Me</legend>
+                    <div class="form-group flex flex-col my-1">
+                        <label for="name" class="form-label dark:text-white">Name:</label>
+                        <input id="name" name="name" type="text" class="form-input">
+                    </div>
+    
+                    <div class="form-group flex flex-col my-1">
+                        <label for="email" class="form-label dark:text-white">Email:</label>
+                        <input id="email" name="email" type="email" class="form-input">
+                    </div>
+    
+                    <div class="form-group flex flex-col my-1">
+                        <label for="message" class="form-label dark:text-white">Message:</label>
+                        <textarea name="message" id="message" cols="30" rows="10" class="form-input"></textarea>
+                    </div>
+
+                    <button class="form-button" type="submit">Send</button>
+                </fieldset>
+            </form>
+        </div>
+	</div>
+</Main>
+
+<script>
+    const form = document.getElementById('contact-me-container')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        // on submit
+        document.querySelectorAll('#contact-me-container .form-input').forEach(element => {
+            element.setAttribute('disabled', "")
+        });
+        document.querySelector('#contact-me-container .form-button').setAttribute('disabled', "")
+    });
+</script>

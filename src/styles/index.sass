@@ -1,0 +1,42 @@
+body
+    overflow: hidden
+    
+#promo 
+    transition: 0.3s ease-in-out
+
+    p
+        text-align: center
+        font-weight: 500
+        font-family: 'Roboto Mono', monospace
+
+    img
+        border: 2px solid black
+        border-radius: 12px
+
+    &:hover
+        cursor: pointer
+
+        p
+            font-weight: 700
+            color: #2b2d42
+            font-size: 1.3rem
+
+        img
+            border: 3px solid #8d99ae
+            
+html.dark
+    #promo
+        img
+            border: 2px solid white
+
+        &:hover
+            p
+                color: white
+
+            img
+                border: 3px solid white
+
+#text
+    font-family: 'Roboto Mono', monospace
+    font-weight: 600
+    font-size: 2rem

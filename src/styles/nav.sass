@@ -1,0 +1,92 @@
+#navbar
+    transition: 0.3s ease-in-out
+    
+#navbar-brand 
+    font-family: 'Roboto Mono', monospace
+
+.font-nav
+    cursor: pointer
+
+#navbar-button
+    color: #3b0a4e
+    transition: 0.3s ease-in-out
+
+html.dark
+    #navbar-button
+        color: #ffd282
+
+@media only screen and (max-width: 649px)
+    #navbar-list
+        visibility: hidden
+        transition: 0.5s ease-in-out
+        left: -100vw
+
+    #navbar[data-show='true']
+        #navbar-list
+            visibility: visible
+            left: 1.5rem
+
+a
+    transition: 0.3s ease-in-out
+    font-family: 'Fira Sans', sans-serif
+    font-weight: 400
+    
+    &:hover
+        font-weight: 600
+    
+    &.active
+        font-weight: 600
+
+#toggle-switch 
+    width: 80px
+    height: 35px
+
+    input#toggle-button
+        width: 0px
+        height: 0px
+        visibility: hidden
+
+        &:checked + span#toggle-slider
+            background-color: #222
+
+            i
+                left: auto
+                right: 8px
+                color: white
+
+        &:checked + span#toggle-slider:before
+            -webkit-transform: translateX(41px)
+            -ms-transform: translateX(41px)
+            transform: translateX(41px)
+            background-color: #111
+            border: 2px solid white
+
+        &:focus + span#toggle-slider
+            box-shadow: 0 0 1px gray
+
+    span#toggle-slider
+        background-color: #ddd
+        -webkit-transition: .3s ease-in-out
+        transition: .3s ease-in-out
+        border-radius: 20px
+
+        &:before
+            position: absolute
+            content: ""
+            height: 30px
+            width: 30px
+            left: 4px
+            bottom: 2px
+            -webkit-transition: .3s ease-in-out
+            transition: .3s ease-in-out
+            border-radius: 50%
+            background-color: #eee
+            border: 2px solid gray
+
+        i
+            font-size: 1.4rem
+            position: absolute
+            left: 8px
+            bottom: 6px
+            color: #f6ad06
+

@@ -1,0 +1,16 @@
+---
+import Header from "../components/header.astro";
+import Nav from "../components/nav.astro";
+import styles from '../styles/global.sass';
+
+const { title } = Astro.props 
+---
+
+<html lang="en">
+	<Header title={title}></Header>
+	<body class="h-auto">
+		<canvas id="background-image" class="absolute w-full h-full inset-0 z-0" width="1920" height="1080"></canvas>
+        <Nav/>
+        <slot />
+	</body>
+</html>

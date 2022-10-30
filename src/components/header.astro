@@ -1,0 +1,78 @@
+---
+const { title } = Astro.props
+---
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/89ef39a558.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.2/chroma.min.js"
+        integrity="sha512-8TVPS0EFkkmtT6yPb5K4csnSt3tjbKRrs0F8gvTNKv2OxOcwDO7+Klkz86gMVrzfqtZos5N2a+k+r9D+hlccmQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const load_background = () => {
+            const canvas = document.getElementById('background-image')
+            var ctx = canvas.getContext('2d')
+            let path3 = new Path2D('M0 337L53.3 334.2C106.7 331.3 213.3 325.7 320 307.7C426.7 289.7 533.3 259.3 640 252C746.7 244.7 853.3 260.3 960 279.3C1066.7 298.3 1173.3 320.7 1280 330.3C1386.7 340 1493.3 337 1600 307.8C1706.7 278.7 1813.3 223.3 1866.7 195.7L1920 168L1920 1081L1866.7 1081C1813.3 1081 1706.7 1081 1600 1081C1493.3 1081 1386.7 1081 1280 1081C1173.3 1081 1066.7 1081 960 1081C853.3 1081 746.7 1081 640 1081C533.3 1081 426.7 1081 320 1081C213.3 1081 106.7 1081 53.3 1081L0 1081Z')
+            ctx.fillStyle = colors[color_index][0]
+            ctx.fill(path3)
+
+            let path2 = new Path2D('M0 569L53.3 582C106.7 595 213.3 621 320 619.7C426.7 618.3 533.3 589.7 640 568.8C746.7 548 853.3 535 960 536C1066.7 537 1173.3 552 1280 555.2C1386.7 558.3 1493.3 549.7 1600 540C1706.7 530.3 1813.3 519.7 1866.7 514.3L1920 509L1920 1081L1866.7 1081C1813.3 1081 1706.7 1081 1600 1081C1493.3 1081 1386.7 1081 1280 1081C1173.3 1081 1066.7 1081 960 1081C853.3 1081 746.7 1081 640 1081C533.3 1081 426.7 1081 320 1081C213.3 1081 106.7 1081 53.3 1081L0 1081Z')
+            ctx.fillStyle = colors[color_index][1]
+            ctx.fill(path2)
+
+            let path = new Path2D('M0 855L53.3 832.2C106.7 809.3 213.3 763.7 320 751.7C426.7 739.7 533.3 761.3 640 793.3C746.7 825.3 853.3 867.7 960 884.7C1066.7 901.7 1173.3 893.3 1280 889.3C1386.7 885.3 1493.3 885.7 1600 860.2C1706.7 834.7 1813.3 783.3 1866.7 757.7L1920 732L1920 1081L1866.7 1081C1813.3 1081 1706.7 1081 1600 1081C1493.3 1081 1386.7 1081 1280 1081C1173.3 1081 1066.7 1081 960 1081C853.3 1081 746.7 1081 640 1081C533.3 1081 426.7 1081 320 1081C213.3 1081 106.7 1081 53.3 1081L0 1081Z')
+            ctx.fillStyle = colors[color_index][2]
+            ctx.fill(path)
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.querySelector('html').classList.add('dark')
+        } else { 
+            document.querySelector('html').classList.remove('dark')
+        }
+
+        if (localStorage.theme === undefined || localStorage.theme === null) {
+            localStorage.theme = 'light'
+        }
+
+        var color_index = 0
+
+        const colors = [
+            ['#ffd282', '#ffb26e', '#ff9066'], //orange to red
+            ['#330b7b', '#3b0863', '#3b0a4e'] //dark purple to purple
+        ]
+
+        load_background()
+
+        if (localStorage.theme === 'dark') {
+            color_index = 1
+            load_background()
+        }
+
+        window.onstorage = () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.querySelector('html').classList.add('dark')
+            } else { 
+                document.querySelector('html').classList.remove('dark')
+            }
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                color_index = 1
+            } else { 
+                color_index = 0
+            }
+
+            load_background()
+        }
+    </script>
+</head>
