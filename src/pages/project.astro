@@ -4,18 +4,31 @@ import Main from "../layouts/main.astro";
 import { Project, YearlyProject } from "../classes/project";
 import styles from '../styles/project.sass'
 
-const yearly_projects: [YearlyProject] = [
+const yearly_projects: Array<YearlyProject> = [
     new YearlyProject(
         2022, 
         [
             new Project('Redo Portfolio', 'Decided there my old portfolio was outdated, so i upgraded it to astro framework with some extensions to improve UX', '/images/babasama.com.png', '#', true),
+        ]
+    ),
+    new YearlyProject(
+        2021, 
+        [
+            new Project('ydotbakery.com', 'A request from a classmate at school. Now not available', '/images/ydotbakery.com.png', '#', true),
+            new Project('jiujihongforall.com', 'A request from a classmate at school. Now not available', '/images/jiujigongforall.com.png', '#', true),
+        ]
+    ),
+    new YearlyProject(
+        2020, 
+        [
+            new Project('babasama.com', 'The first portfolio I was satisified with. Now is reworked and renewed', '/images/babasama.com.old.png', '#', true),
         ]
     )
 ]
 ---
 
 <Main title="Projects ~ BaBaSaMa">
-	<div id="container" class="relative container mt-5 mx-auto z-10">
+	<div id="container" class="relative container mt-5 mx-auto z-10 pb-6">
         <main class="flex flex-col">
             { yearly_projects.map((yearly_project) => (
                 <ProjectSection yearly_project={yearly_project} client:load/>
