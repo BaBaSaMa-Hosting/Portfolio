@@ -1,17 +1,19 @@
 .project-container
+    width: 100%
     min-width: 30vw
-
-    &.col-span-2.row-span-2
-        min-width: 60vw
+    max-height: 40vh
 
     img
         border-radius: 24px
+        width: 100%
+        height: 40vh
+        object-fit: cover
+        aspect-ratio: auto
 
     .project-overlay
         left: 0
         top: 0
-        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)
-        opacity: 0.4
+        background-image: linear-gradient(to top, rgba(#cfd9df, 1) 0%, rgba(#e2ebf0, 0.4) 100%)
         border: 2px solid #aaa
         border-radius: 24px
     

@@ -20,10 +20,6 @@ import styles from '../styles/nav.sass'
         </button>
 
         <ul id="navbar-list" class="absolute grid grid-cols-2 grid-rows-2 justify-evenly md:relative md:flex md:flex-row md:items-center md:pt-4">
-            <!-- <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
-                <i class="fa-light fa-file-lines"></i>
-                <a id="blog" href="/blog" class="">Blog</a>
-            </li> -->
             <li class="px-6 pb-3 text-xl dark:text-white md:pb-0">
                 <i class="fa-light fa-folders"></i>
                 <a id="projects" href="/project" class="">Projects</a>
@@ -91,7 +87,7 @@ import styles from '../styles/nav.sass'
     }
 
     switch (window.location.pathname) {
-        case '/projects':
+        case '/project':
             document.getElementById('navbar-brand').innerHTML += "'s Projects"
             document.getElementById('projects').classList.add('font-semibold')
             break

@@ -1,0 +1,12 @@
+---
+import Main from './main.astro'
+import styles from '../styles/project_layout.sass'
+
+const { frontmatter } = Astro.props;
+---
+
+<Main title={`Project '${frontmatter.title}' ~ BaBaSaMa`}>
+    <div id="container" class="relative container mt-5 mx-auto z-10 pb-6">
+        <slot/>
+    </div>
+</Main>
