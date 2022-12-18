@@ -10,7 +10,7 @@ const { yearly_project } = Astro.props
     </div>
     <div id={`${yearly_project.year}-scroll-container`} class="flex flex-row flex-nowrap overflow-x-auto overflow-y-clip items-center cursor-grab">
         { yearly_project.projects.map((project: Project) => (
-            <div class={`project-container mx-2 h-max relative cursor-pointer w-auto`} onclick={`{window.location.replace("${project.link}")}`}>
+            <div class={`project-container mx-2 h-max relative cursor-pointer w-auto`} onclick={`{window.open("${project.link}")}`}>
                 <img src={project.img} alt={project.title} class="z-10"/>
                 <div class="absolute z-20 w-full h-full project-overlay"></div>
                 <div class="absolute left-0 top-0 h-full flex flex-col-reverse z-30">
